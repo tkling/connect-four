@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 
-@game_board = (1..7).map { Array.new }
+@game_board = (0..6).map { Array.new }
 
 def show_game
   (0..5).reverse_each.map do |row_index|
@@ -33,8 +33,7 @@ def prompt(player_symbol)
 end
 
 def show_winner
-  puts 'Someone won the game!'
-  puts 'Press [enter] to exit'
+  puts "Someone won the game!\nPress [enter] to exit"
   while input = gets.chomp
     exit false if input.empty?
   end
