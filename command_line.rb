@@ -58,8 +58,20 @@ end
 
 def prompt(player_symbol)
   puts "Player '#{ player_symbol }', type the column you'd like to play followed by [enter]: 1 - 7"
-  input = gets.chomp
-  @game_board[input.to_i - 1].push player_symbol
+  raw_input = gets.chomp
+  converted_input = raw_input.to_i
+
+  if (1..7).include? converted_input
+    if @game_board[converted_input-1].size < 6
+      @game_board[converted_input-1].push player_symbol
+    else
+      puts "Column #{ converted_input } is full, try again!"
+      prompt player_symbol
+    end
+  else
+    puts "#{ raw_input } is invalid; must be an integer between 1 and 7 (inclusive)."
+    prompt player_symbol
+  end
 end
 
 def show_winner(winner)
