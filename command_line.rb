@@ -23,6 +23,14 @@ def vertical_winner
 end
 
 def horizontal_winner
+  (0..5).each do |row_index|
+    row_array = @game_board.map do |column|
+      column[row_index]
+    end
+
+    winner = find_four_in_a_row row_array
+    return winner unless winner.nil?
+  end
   false
 end
 
