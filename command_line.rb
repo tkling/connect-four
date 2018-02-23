@@ -16,33 +16,39 @@ end
 
 def vertical_winner
   @game_board.each do |column|
-    last_read = nil
-    count = 0
-
-    column.each do |item|
-      next if item.nil?
-      return item if count == 3 && last_read == item
-
-      if last_read == item
-        count += 1
-      else
-        last_read = item
-        count = 1
-      end
-    end
+    winner = find_four_in_a_row column
+    return winner unless winner.nil?
   end
   false
 end
 
 def horizontal_winner
-  # iterate across columns
-  # return true if there are 4 of the same in a row
   false
 end
 
 def diagonal_winner
   # this one is tough to think about LOL
   false
+end
+
+def find_four_in_a_row(array)
+  return nil if array.empty?
+
+  last_read = nil
+  count = 0
+
+  array.each do |item|
+    next if item.nil?
+    return item if count == 3 && last_read == item
+
+    if last_read == item
+      count += 1
+    else
+      last_read = item
+      count = 1
+    end
+  end
+  nil
 end
 
 def prompt(player_symbol)
