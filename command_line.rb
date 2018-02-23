@@ -24,10 +24,7 @@ end
 
 def horizontal_winner
   (0..5).each do |row_index|
-    row_array = @game_board.map do |column|
-      column[row_index]
-    end
-
+    row_array = @game_board.map { |column| column[row_index] }
     winner = find_four_in_a_row row_array
     return winner unless winner.nil?
   end
@@ -68,9 +65,7 @@ end
 def show_winner(winner)
   show_game
   puts "Player #{ winner } won the game!\nPress [enter] to exit"
-  while input = gets.chomp
-    exit false if input.empty?
-  end
+  exit true
 end
 
 player = 'x'
