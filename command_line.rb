@@ -3,11 +3,11 @@
 @game_board = (0..6).map { Array.new }
 
 def show_game
-  puts((0..5).reverse_each.map do |row_index|
-    @game_board.map do |column|
-      column[row_index]
-    end.to_s
-  end.join("\n"))
+  top_down_row_strings = (0..5).reverse_each.map do |row_index|
+    @game_board.map { |column| column[row_index] }.to_s
+  end
+
+  puts "\n#{ top_down_row_strings.join("\n") }\n\n"
 end
 
 def find_a_winner
